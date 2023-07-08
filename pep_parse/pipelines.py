@@ -21,11 +21,11 @@ class PepParsePipeline:
         date_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         filename = f'status_summary_{date_time}.csv'
         with open(f'{self.results_dir}/{filename}', 'w',
-                  encoding='utf-8') as f:
-            writer = csv.DictWriter(f, fieldnames=['Статус', 'Количество'])
-            writer.writeheader()
-            for status, count in self.pep_statuses.items():
-                writer.writerow({'Статус': status, 'Количество': count})
-            total_count_statuses = sum(self.pep_statuses.values())
-            writer.writerow(
-                {'Статус': 'Всего', 'Количество': total_count_statuses})
+                  encoding='utf-8', newline='') as f:
+            csv.writer(f, dialect=csv.excel).writerows(
+                (
+                    ('Статус', 'Количество'),
+                    *self.pep_statuses.items(),
+                    ('Всего', sum(self.pep_statuses.values())),
+                )
+            )

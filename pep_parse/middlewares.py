@@ -2,7 +2,6 @@ from scrapy import signals
 
 
 class PepParseSpiderMiddleware:
-
     @classmethod
     def from_crawler(cls, crawler):
         s = cls()
@@ -28,7 +27,6 @@ class PepParseSpiderMiddleware:
 
 
 class PepParseDownloaderMiddleware:
-
     @classmethod
     def from_crawler(cls, crawler):
         s = cls()
@@ -36,15 +34,12 @@ class PepParseDownloaderMiddleware:
         return s
 
     def process_request(self, request, spider):
-
         return None
 
     def process_response(self, request, response, spider):
-
         return response
 
     def process_exception(self, request, exception, spider):
-
         pass
 
     def spider_opened(self, spider):
